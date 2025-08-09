@@ -292,6 +292,9 @@ class Parser:
                 if children:
                     elements.append(Summary(children))
 
+            elif node.tag in ("script", "style"):
+                continue
+
             else:
                 # treat as fragments
                 children = self.parse_children(node)
