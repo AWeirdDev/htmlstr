@@ -16,6 +16,7 @@ from .core import (
     Option,
     Details,
     Summary,
+    TextTransformer,
 )
 
 __all__ = [
@@ -36,4 +37,5 @@ __all__ = [
     "Option",
     "Details",
     "Summary",
+    "TextTransformer",
 ]
