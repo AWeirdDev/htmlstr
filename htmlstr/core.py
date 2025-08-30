@@ -392,7 +392,6 @@ class TextTransformer:
     __slots__ = ("elements", "texts")
 
     elements: List[Element]
-
     texts: List[Union[str, Literal[Indentation.Indent, Indentation.Outdent]]]
 
     def __init__(self, elements: List[Element]):
@@ -616,12 +615,21 @@ class TextTransformer:
 
                 self.outdent()
 
-    def transform(self):
-        """Transform the page (all elements)."""
+    def transform(self) -> None:
+        """Transform the page (all elements).
+        
+        Does not return anything.
+        """
         self.transform_inner(self.elements)
 
     def text(self) -> str:
-        """Once `transform()` is used, use this to generate text, if any."""
+        """Once `transform()` is used, use this to generate text, if any.
+
+        Alternatively, just use this function to automatically transform.
+        """
+        if not self.texts:
+            self.transform()
+
         result = ""
         indents = 0
 
